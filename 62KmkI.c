@@ -1,5 +1,8 @@
 //wallbot code Mk I
-task main()
+task autonomous(){
+}
+
+task playerControlled()
 {
 	while(true){
 
