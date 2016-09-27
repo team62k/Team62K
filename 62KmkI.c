@@ -1,5 +1,6 @@
 //wallbot code Mk I
 task autonomous(){
+	
 }
 
 task playerControlled()
@@ -9,4 +10,8 @@ task playerControlled()
 	}
 
 
+}
+
+task main(){
+		
 }
