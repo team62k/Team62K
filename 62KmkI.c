@@ -3,7 +3,7 @@ task autonomous(){
 	
 }
 
-task playerControlled()
+task usercontrol()
 {
 	while(true){
 
@@ -12,6 +12,6 @@ task playerControlled()
 
 }
 
-task main(){
-		
+void pre_auton(){
+	
 }
