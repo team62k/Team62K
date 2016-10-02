@@ -16,10 +16,10 @@ task main()
 		//motor[BLWheel] = 100;
 		//motor[BRWheel] = 100;
 		motor[lift] = 127;
-		delay(100);
+		delay(150);
 		motor[lift] = 0;
-		delay(1000);
-		motor[lift] = -127;
+		delay(300);
+		motor[lift] = -100;
 		delay(100);
 		break;
 	}
