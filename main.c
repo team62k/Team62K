@@ -16,44 +16,106 @@
 long            motor_driveR;            ///< final motor control value RIGHT
 long            motor_driveL;            /// LEFT
 
-void
-MotorSetL( int valueR )
-{
-	motor[ FLWheel ] = motor_driveL;
-	motor[ BLWheel ] = motor_driveL;
-}
-
-void
-MotorSetR( int valueR )
-{
-	motor[ FRWheel ] = motor_driveR;
-	motor[ BRWheel ] = motor_driveR;
-}
-
-void
-MotorSetArms( int valueR )
-{
-	motor[ Motor_FWR ] = valueR;
-}
+/*
+	To Do List
+	1. Update the Btn stuff with (UDLR) and (5678)
+	2. Ask Jon about competition template
+	3. Try an empty main()
+	4. what does it mean to have greater resolution in sensors?
+	5. Add them deadbands
+*/
 
 task main()
 {
-	while(true)
+	while(1) //check if 1 works
 	{
 		displayNextLCDString("Main task running");
-		//motor[FLWheel] = 100;
-		//motor[FRWheel] = 100;
-		//motor[BLWheel] = 100;
-		//motor[BRWheel] = 100;
-		motor[lift] = 127;
-		delay(150);
-		motor[lift] = 0;
-		delay(300);
-		motor[lift] = -100;
-		delay(100);
+		//move(1000, 100);
+		liftTester(127);
+		//userControl();
 		break;
+		//test return false;
+	}
+
+task userControl()
+{
+		//left drive with deadbands
+		motor[ FLWheel ] = abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0;
+		motor[ BLWheel ] = abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0;
+
+		//right drive with deadbands
+		motor[ FRWheel ] = abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0;
+		motor[ BRWheel ] = abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0;
+
+		delay(100); //give it some time
+
+		//operate the lift
+		if(vexRT[ BtnU5 ] || vexRT[ BtnU5 ]) //test with == 1
+		{
+			motor[ lift ] = (vexRT[ BtnU5 ] - vexRT[ BtnU5 ]) * -127;
+		}
+		else motor[ lift ] = 0; //is this necessary?
+
+
+		//killswitch
+		if(vexRT[ BtnD8 ] == 1)
+		{
+			stopAll();
+		}
+}
+
+//task autonomous(){ }
+
+void
+liftTester(int power)
+{
+	motor[ lift ] = power;
+	delay(150);
+	motor[ lift ] = 0;
+	delay(300);
+	motor[lift] = -power;
+	delay(100);
+}
+
+void
+move( int time, int power )
+{
+	while true
+	{
+		setMotorL(power);
+		setMotorR(power);
+		delay(time);
+		power = 0; //what happens when i ommit this portion?
+		setMotorR(power);
+		setMotorL(power);
+		//no delay( )?
 	}
 }
 
+void
+killAll()
+{
+	move(1000, 0);
+	//add any other motors that need killing 🔪🔪🔪🗡🗡
+}
 
-//test
+//setters
+void
+setMotorL( int valueL )
+{
+	motor[ FLWheel ] = valueL;
+	motor[ BLWheel ] = valueL;
+}
+
+void
+setMotorR( int valueR )
+{
+	motor[ FRWheel ] = valueR;
+	motor[ BRWheel ] = valueR;
+}
+
+void
+setMotorArms( int power )
+{
+	motor[ lift ] = power;
+}
