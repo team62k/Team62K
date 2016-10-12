@@ -26,11 +26,8 @@ long            motor_driveL;            /// LEFT
 
 /*
 	To Do List
-	1. Update the Btn stuff with (UDLR) and (5678)
-	2. Ask Jon about competition template
-	3. Try an empty main()
-	4. what does it mean to have greater resolution in sensors?
-	5. Add them deadbands
+	1. Try an empty main()
+	2. what does it mean to have greater resolution in sensors?
 */
 
 
@@ -49,34 +46,36 @@ liftTester(int power)
 void
 move( int time, int power )
 {
-		setMotorL(power);
-		setMotorR(power);
+		setDriveL(power);
+		setDriveR(power);
 		delay(time);
 		power = 0; //what happens when i ommit this portion?
-		setMotorR(power);
-		setMotorL(power);
+		setDriveR(power);
+		setDriveL(power);
 		//no delay( )?
 
 }
 
-//stops everything
+//stopers
 void
 killAll()
 {
-	move(1000, 0);
+	move(1000, 0); //check the time variable on this
+
 	//add any other motors that need killing �??��??��??��??��??�
+	//add a delay( )?
 }
 
 //setters
 void
-setMotorL( int valueL )
+setDriveL( int valueL )
 {
 	motor[ FLWheel ] = valueL;
 	motor[ BLWheel ] = valueL;
 }
 
 void
-setMotorR( int valueR )
+setDriveR( int valueR )
 {
 	motor[ FRWheel ] = valueR;
 	motor[ BRWheel ] = valueR;
@@ -88,6 +87,7 @@ setMotorArms( int power )
 	motor[ lift ] = power;
 }
 
+#warning "test task"
 //tasks
 task test()
 {
@@ -99,6 +99,7 @@ task test()
 		//test return false;
 }
 
+#warning "autonomous"
 
 task autonomous()
 {
@@ -106,6 +107,8 @@ task autonomous()
 }
 
 
+#warning "usercontrol"
+//try making this a tankDrive()
 task usercontrol()
 {
   while (true) //try using '1'
