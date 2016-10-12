@@ -15,7 +15,6 @@
 #include "Vex_Competition_Includes.c"
 
 
-
 #define LOOP_SPEED              25
 #define MAX_POWER              127
 #define MIN_POWER             -127
@@ -23,6 +22,19 @@
 // final motor drive
 long            motor_driveR;            ///< final motor control value RIGHT
 long            motor_driveL;            /// LEFT
+
+/*///////////////////////////////////////////////////////////
+/////        /|\   ____\ /  ___  \|\  \|\  \            /////
+/////        \ \  \___|/__/|_/  /\ \  \/  /|_           /////
+/////         \ \  \___|__|//  / /\ \   ___  \          /////
+/////          \ \  ___  \ /  /_/__\ \  \\ \  \         /////
+/////           \ \_______\\________\ \__\\ \__\        /////
+/////            \|_______|\|_______|\|__| \|__|        /////
+///// Team 62K Robot                                    /////
+///// Main Code                                         /////
+///// Authors: Abner Benitez                            /////
+///// Since: Oct. 02, 2016                              /////
+*////////////////////////////////////////////////////////////
 
 /*
 	To Do List
