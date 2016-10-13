@@ -33,6 +33,27 @@ long            motor_driveL;            /// LEFT
 	5. Add them deadbands
 */
 
+//setters
+void
+setMotorL( int valueL )
+{
+	motor[ FLWheel ] = valueL;
+	motor[ BLWheel ] = valueL;
+}
+
+void
+setMotorR( int valueR )
+{
+	motor[ FRWheel ] = valueR;
+	motor[ BRWheel ] = valueR;
+}
+
+void
+setMotorArms( int power )
+{
+	motor[ lift ] = power;
+}
+
 
 //action methods
 void
@@ -61,32 +82,12 @@ move( int time, int power )
 
 //stops everything
 void
-killAll()
+stopAll()
 {
 	move(1000, 0);
 	//add any other motors that need killing �??��??��??��??��??�
 }
 
-//setters
-void
-setMotorL( int valueL )
-{
-	motor[ FLWheel ] = valueL;
-	motor[ BLWheel ] = valueL;
-}
-
-void
-setMotorR( int valueR )
-{
-	motor[ FRWheel ] = valueR;
-	motor[ BRWheel ] = valueR;
-}
-
-void
-setMotorArms( int power )
-{
-	motor[ lift ] = power;
-}
 
 //tasks
 task test()
@@ -99,6 +100,10 @@ task test()
 		//test return false;
 }
 
+task pre_auton()
+{
+	AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
+}
 
 task autonomous()
 {
