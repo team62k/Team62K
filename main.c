@@ -33,13 +33,14 @@ long            motor_driveL;            /// LEFT
 ///// Team 62K Robot                                    /////
 ///// Main Code                                         /////
 ///// Authors: Abner Benitez                            /////
-///// Since: Oct. 02, 2016                              /////
+///// Since: Oct. 12, 2016                              /////
 *////////////////////////////////////////////////////////////
 
 /*
 	To Do List
 	1. Try an empty main()
 	2. what does it mean to have greater resolution in sensors?
+	3. startTask( ); gotta use this within main tasks
 */
 
 
@@ -123,6 +124,7 @@ task autonomous()
 //try making this a tankDrive()
 task usercontrol()
 {
+	//start PID control task here "startTask( )"
   while (true) //try using '1'
 {
 
@@ -149,5 +151,6 @@ task usercontrol()
 		{
 			stopAll();
 		}
+		wait1Msec(10); //don't hog the CPU :)
   }
 }
