@@ -1,4 +1,5 @@
-#pragma config(Motor,  port2,           RDriveBase,    tmotorVex393_MC29, openLoop, driveRight)
+#pragma config(Motor,  port1,           testM,         tmotorVex393_HBridge, openLoop)
+#pragma config(Motor,  port2,           RDriveBase,    tmotorVex393_MC29, openLoop, reversed, driveRight)
 #pragma config(Motor,  port3,           LDriveBase,    tmotorVex393_MC29, openLoop, driveLeft)
 #pragma config(Motor,  port4,           rightLift,     tmotorVex393_MC29, openLoop, driveRight)
 #pragma config(Motor,  port5,           leftLift,      tmotorVex393_MC29, openLoop, driveLeft)
@@ -25,7 +26,6 @@ long            motor_driveL;            /// LEFT
 
 /*
 To Do List
-1. Update the Btn stuff with (UDLR) and (5678)
 2. Ask Jon about competition template
 3. Try an empty main()
 4. what does it mean to have greater resolution in sensors?
@@ -111,6 +111,7 @@ task autonomous()
 
 task usercontrol()
 {
+	motor[testM]=127;
 	while (true) //try using '1'
 	{
 
