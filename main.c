@@ -38,19 +38,10 @@ long            motor_driveL;            /// LEFT
 *////////////////////////////////////////////////////////////
 
 /*
-<<<<<<< HEAD
-<<<<<<< HEAD
 	To Do List
 	1. Try an empty main()
 	2. what does it mean to have greater resolution in sensors?
 	3. startTask( ); gotta use this within tasks
-=======
-To Do List
-2. Ask Jon about competition template
-3. Try an empty main()
-4. what does it mean to have greater resolution in sensors?
-5. Add them deadbands
->>>>>>> origin/master
 */
 
 //setters
@@ -74,91 +65,12 @@ setArms( int power )
 }
 
 void
-setGrabber( int power )
-{
-	motor[ grabber ] = power;
-}
-
-
-//action methods
-=======
-    To Do List
-    1. Try an empty main()
-    2. what does it mean to have greater resolution in sensors?
-    3. startTask( ); gotta use this within tasks
-*/
-
-//setters
->>>>>>> origin/master
-void
-setMotorL( int valueL )
-{
-<<<<<<< HEAD
-	setArms(power);
-	delay(150);
-	setArms(power);
-	delay(300);
-	setArms(-power);
-	delay(100);
-=======
-	motor[ LDriveBase ] = valueL;
->>>>>>> origin/master
-}
-
-void
-setMotorR( int valueR )
-{
-<<<<<<< HEAD
-<<<<<<< HEAD
-		setDriveL(power);
-		setDriveR(power);
-		delay(time);
-		power = 0; //what happens when i ommit this portion?
-		setDriveR(power);
-		setDriveL(power);
-		//no delay( )?
-=======
-	setMotorL(power);
-	setMotorR(power);
-	delay(time);
-	power = 0; //what happens when i ommit this portion?
-	setMotorR(power);
-	setMotorL(power);
-	//no delay( )?
->>>>>>> origin/master
-=======
-	motor[ RDriveBase ] = valueR;
-}
->>>>>>> origin/master
-
-void
 setArms( int power )
 {
 	motor[ leftLift ] = power;
 	motor[ rightLift ] = power;
 }
 
-<<<<<<< HEAD
-//stopers
-void
-stopAll()
-{
-<<<<<<< HEAD
-	move(1000, 0); //check the time variable on this
-
-=======
-	move(1000, 0);
-	setArms(0);
->>>>>>> origin/master
-	//add any other motors that need killing �??��??��??��??��??�
-	//add a delay( )?
-}
-
-<<<<<<< HEAD
-//setters
-void
-setDriveL( int valueL )
-=======
 void
 setGrabber( int power )
 {
@@ -169,7 +81,6 @@ setGrabber( int power )
 //action methods
 void
 liftTester(int power)
->>>>>>> origin/master
 {
 	setArms(power);
 	delay(150);
@@ -180,11 +91,7 @@ liftTester(int power)
 }
 
 void
-<<<<<<< HEAD
-setDriveR( int valueR )
-=======
 move( int time, int power )
->>>>>>> origin/master
 {
 	setMotorL(power);
 	setMotorR(power);
@@ -202,17 +109,12 @@ stopAll()
 {
 	move(1000, 0);
 	setArms(0);
-	//add any other motors that need killing �??��??��??��??��??�
+  setGrabber(0);
+	//add any other motors that need killing 🗡
 }
-=======
->>>>>>> origin/master
 
-<<<<<<< HEAD
-#warning "test task"
-=======
-
->>>>>>> origin/master
 //tasks
+#warning "test task"
 task test()
 {
 	displayNextLCDString("Main task running");
@@ -222,18 +124,13 @@ task test()
 	//test return false;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 #warning "autonomous task"
-=======
-=======
->>>>>>> origin/master
 void pre_auton()
 {
 	//Pre-autonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
 }
 
->>>>>>> origin/master
+#warning "autonomous task"
 task autonomous()
 {
 	AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
@@ -244,25 +141,15 @@ task autonomous()
 //try making this a tankDrive()
 task usercontrol()
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
 	//start PID control task here "startTask( )"
   while (true) //try using '1'
 {
-=======
-=======
->>>>>>> origin/master
-	while (true) //try using '1'
-	{
-
->>>>>>> origin/master
 		//left drive with deadbands
 		setMotorL(abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0);
 
 		//right drive with deadbands
 		setMotorR(abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0);
 
-		delay(50); //give it some time
 
 		//operate the lift
 		if(vexRT[ Btn5U ] || vexRT[ Btn6U ]) //test with == 1
@@ -277,18 +164,8 @@ task usercontrol()
 		{
 			stopAll();
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 		wait1Msec(20); //don't hog the CPU :)
   }
-=======
 
 		//if(vexRT[ Btn5D ] || vexRT
-	}
->>>>>>> origin/master
-=======
-
-		//if(vexRT[ Btn5D ] || vexRT
-	}
->>>>>>> origin/master
 }
