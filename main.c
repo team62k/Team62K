@@ -39,6 +39,7 @@ long            motor_driveL;            /// LEFT
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	To Do List
 	1. Try an empty main()
 	2. what does it mean to have greater resolution in sensors?
@@ -80,20 +81,34 @@ setGrabber( int power )
 
 
 //action methods
+=======
+    To Do List
+    1. Try an empty main()
+    2. what does it mean to have greater resolution in sensors?
+    3. startTask( ); gotta use this within tasks
+*/
+
+//setters
+>>>>>>> origin/master
 void
-liftTester(int power)
+setMotorL( int valueL )
 {
+<<<<<<< HEAD
 	setArms(power);
 	delay(150);
 	setArms(power);
 	delay(300);
 	setArms(-power);
 	delay(100);
+=======
+	motor[ LDriveBase ] = valueL;
+>>>>>>> origin/master
 }
 
 void
-move( int time, int power )
+setMotorR( int valueR )
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		setDriveL(power);
 		setDriveR(power);
@@ -111,9 +126,19 @@ move( int time, int power )
 	setMotorL(power);
 	//no delay( )?
 >>>>>>> origin/master
+=======
+	motor[ RDriveBase ] = valueR;
+}
+>>>>>>> origin/master
 
+void
+setArms( int power )
+{
+	motor[ leftLift ] = power;
+	motor[ rightLift ] = power;
 }
 
+<<<<<<< HEAD
 //stopers
 void
 stopAll()
@@ -133,27 +158,60 @@ stopAll()
 //setters
 void
 setDriveL( int valueL )
+=======
+void
+setGrabber( int power )
 {
-	motor[ FLWheel ] = valueL;
-	motor[ BLWheel ] = valueL;
+	motor[ grabber ] = power;
+}
+
+
+//action methods
+void
+liftTester(int power)
+>>>>>>> origin/master
+{
+	setArms(power);
+	delay(150);
+	setArms(power);
+	delay(300);
+	setArms(-power);
+	delay(100);
 }
 
 void
+<<<<<<< HEAD
 setDriveR( int valueR )
+=======
+move( int time, int power )
+>>>>>>> origin/master
 {
-	motor[ FRWheel ] = valueR;
-	motor[ BRWheel ] = valueR;
+	setMotorL(power);
+	setMotorR(power);
+	delay(time);
+	power = 0; //what happens when i ommit this portion?
+	setMotorR(power);
+	setMotorL(power);
+	//no delay( )?
+
 }
 
+//stops everything
 void
-setMotorArms( int power )
+stopAll()
 {
-	motor[ lift ] = power;
+	move(1000, 0);
+	setArms(0);
+	//add any other motors that need killing �??��??��??��??��??�
 }
 =======
 >>>>>>> origin/master
 
+<<<<<<< HEAD
 #warning "test task"
+=======
+
+>>>>>>> origin/master
 //tasks
 task test()
 {
@@ -165,8 +223,11 @@ task test()
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #warning "autonomous task"
 =======
+=======
+>>>>>>> origin/master
 void pre_auton()
 {
 	//Pre-autonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
@@ -184,10 +245,13 @@ task autonomous()
 task usercontrol()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//start PID control task here "startTask( )"
   while (true) //try using '1'
 {
 =======
+=======
+>>>>>>> origin/master
 	while (true) //try using '1'
 	{
 
@@ -198,7 +262,7 @@ task usercontrol()
 		//right drive with deadbands
 		setMotorR(abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0);
 
-		delay(100); //give it some time
+		delay(50); //give it some time
 
 		//operate the lift
 		if(vexRT[ Btn5U ] || vexRT[ Btn6U ]) //test with == 1
@@ -214,8 +278,14 @@ task usercontrol()
 			stopAll();
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wait1Msec(20); //don't hog the CPU :)
   }
+=======
+
+		//if(vexRT[ Btn5D ] || vexRT
+	}
+>>>>>>> origin/master
 =======
 
 		//if(vexRT[ Btn5D ] || vexRT
