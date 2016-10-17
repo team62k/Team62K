@@ -25,12 +25,24 @@
 long            motor_driveR;            ///< final motor control value RIGHT
 long            motor_driveL;            /// LEFT
 
+/*///////////////////////////////////////////////////////////
+/////        /|\   ____\ /  ___  \|\  \|\  \            /////
+/////        \ \  \___|/__/|_/  /\ \  \/  /|_           /////
+/////         \ \  \___|__|//  / /\ \   ___  \          /////
+/////          \ \  ___  \ /  /_/__\ \  \\ \  \         /////
+/////           \ \_______\\________\ \__\\ \__\        /////
+/////            \|_______|\|_______|\|__| \|__|        /////
+///// Team 62K Robot                                    /////
+///// Main Code                                         /////
+///// Authors: Abner Benitez                            /////
+///// Since: Oct. 16, 2016                              /////
+*////////////////////////////////////////////////////////////
+
 /*
-To Do List
-2. Ask Jon about competition template
-3. Try an empty main()
-4. what does it mean to have greater resolution in sensors?
-5. Add them deadbands
+    To Do List
+    1. Try an empty main()
+    2. what does it mean to have greater resolution in sensors?
+    3. startTask( ); gotta use this within tasks
 */
 
 //setters
@@ -127,7 +139,7 @@ task usercontrol()
 		//right drive with deadbands
 		setMotorR(abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0);
 
-		delay(100); //give it some time
+		delay(50); //give it some time
 
 		//operate the lift
 		if(vexRT[ Btn5U ] || vexRT[ Btn6U ]) //test with == 1
