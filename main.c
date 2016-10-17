@@ -33,14 +33,14 @@ long            motor_driveL;            /// LEFT
 ///// Team 62K Robot                                    /////
 ///// Main Code                                         /////
 ///// Authors: Abner Benitez                            /////
-///// Since: Oct. 12, 2016                              /////
+///// Since: Oct. 16, 2016                              /////
 *////////////////////////////////////////////////////////////
 
 /*
 	To Do List
 	1. Try an empty main()
 	2. what does it mean to have greater resolution in sensors?
-	3. startTask( ); gotta use this within main tasks
+	3. startTask( ); gotta use this within tasks
 */
 
 
@@ -112,22 +112,20 @@ task test()
 		//test return false;
 }
 
-#warning "autonomous"
-
+#warning "autonomous task"
 task autonomous()
 {
 	AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
 }
 
 
-#warning "usercontrol"
+#warning "usercontrol task"
 //try making this a tankDrive()
 task usercontrol()
 {
 	//start PID control task here "startTask( )"
   while (true) //try using '1'
 {
-
 		//left drive with deadbands
 		motor[ FLWheel ] = abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0;
 		motor[ BLWheel ] = abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0;
@@ -151,6 +149,6 @@ task usercontrol()
 		{
 			stopAll();
 		}
-		wait1Msec(10); //don't hog the CPU :)
+		wait1Msec(20); //don't hog the CPU :)
   }
 }

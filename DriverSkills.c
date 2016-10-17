@@ -1,3 +1,6 @@
+
+
+// This code is for the VEX cortex platform
 #pragma platform(VEX)
 
 //Competition Control and Duration Settings
@@ -5,8 +8,11 @@
 #pragma autonomousDuration(0)
 #pragma userControlDuration(60)
 
-#include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
+//Main competition background code...do not modify!
+#include "Vex_Competition_Includes.c"
 
+//main functions already defined
+#include "main.c"
 
 #define LOOP_SPEED              25
 #define MAX_POWER              127
@@ -26,7 +32,7 @@ long            motor_driveL;            /// LEFT
 ///// Team 62K Robot                                    /////
 ///// Main Code                                         /////
 ///// Authors: Abner Benitez                            /////
-///// Since: Oct. 12, 2016                              /////
+///// Since: Oct. 16, 2016                              /////
 *////////////////////////////////////////////////////////////
 
 
@@ -56,32 +62,33 @@ task autonomous()
 
 task usercontrol()
 {
-  // User control code here, inside the loop
+	//start PID control task here "startTask( )"
+  while (true) //try using '1'
+{
 
-  while (true)
-  {
-    //left drive with deadbands
-    motor[ FLWheel ] = abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0;
-    motor[ BLWheel ] = abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0;
+		//left drive with deadbands
+		motor[ FLWheel ] = abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0;
+		motor[ BLWheel ] = abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0;
 
-    //right drive with deadbands
-    motor[ FRWheel ] = abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0;
-    motor[ BRWheel ] = abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0;
+		//right drive with deadbands
+		motor[ FRWheel ] = abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0;
+		motor[ BRWheel ] = abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0;
 
-    delay(100); //give it some time
+		delay(100); //give it some time
 
-    //operate the lift
-    if(vexRT[ Btn5U ] || vexRT[ Btn5U ]) //test with == 1
-    {
-      motor[ lift ] = (vexRT[ Btn5U ] - vexRT[ Btn5U ]) * -127;
-    }
-    else motor[ lift ] = 0; //is this necessary?
+		//operate the lift
+		if(vexRT[ Btn5U ] || vexRT[ Btn5U ]) //test with == 1
+		{
+			motor[ lift ] = (vexRT[ Btn5U ] - vexRT[ Btn5U ]) * -127;
+		}
+		else motor[ lift ] = 0; //is this necessary?
 
 
-    //killswitch
-    if(vexRT[ Btn8D ] == 1)
-    {
-      stopAll();
-    }
+		//killswitch
+		if(vexRT[ Btn8D ] == 1)
+		{
+			stopAll();
+		}
+		wait1Msec(20); //don't hog the CPU :)
   }
 }
