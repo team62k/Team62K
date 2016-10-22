@@ -123,74 +123,72 @@ PID(int sensor)
   Kd = 0.1;
   while (condition)
   {
-    error = (target value) – (sensor reading); integral = integral + error;
-    if (error = 0)
+  error = (target value) – (sensor reading); integral = integral + error;
+  if (error = 0)
+  {
+  integral = 0;
+}
+if ( abs(error) > 40)
+{
+integral = 0;
+}
+derivative = error – previous_error; previous_error = error;
+speed = Kp*error + Ki*integral + Kd*derivative; }
+*/
+}
+
+
+//tasks
+#warning "test task"
+task test()
+{
+  displayNextLCDString("Main task running");
+  //move(1000, 100);
+  liftTester(127);
+  //userControl();
+  //test return false;
+}
+
+#warning "autonomous task"
+void pre_auton()
+{
+  //Pre-autonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
+}
+
+#warning "autonomous task"
+task autonomous()
+{
+  AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
+}
+
+
+#warning "usercontrol task"
+//try making this a tankDrive()
+task usercontrol()
+{
+  //start PID control task here "startTask( )"
+  while (true) //try using '1'
+  {
+    //left drive with deadbands
+    setMotorL(abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0);
+
+    //right drive with deadbands
+    setMotorR(abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0);
+
+
+    //operate the lift
+    if(vexRT[ Btn5U ] || vexRT[ Btn6U ]) //test with == 1
     {
-      integral = 0;
+      setArms((vexRT[ Btn6U ] - vexRT[ Btn5U ]) * -127);
     }
-    if ( abs(error) > 40)
+    else setArms(0); //is this necessary?
+
+    //killswitch
+    if(vexRT[ Btn8D ] == 1)
     {
-      integral = 0;
+      stopAll();
     }
-    derivative = error – previous_error; previous_error = error;
-    speed = Kp*error + Ki*integral + Kd*derivative; }
-    */
-  }
-
-
-  //tasks
-  #warning "test task"
-  task test()
-  {
-    displayNextLCDString("Main task running");
-    //move(1000, 100);
-    liftTester(127);
-    //userControl();
-    //test return false;
-  }
-
-  #warning "autonomous task"
-  void pre_auton()
-  {
-    //Pre-autonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
-  }
-
-  #warning "autonomous task"
-  task autonomous()
-  {
-    AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
-  }
-
-
-  #warning "usercontrol task"
-  //try making this a tankDrive()
-  task usercontrol()
-  {
-    //start PID control task here "startTask( )"
-    while (true) //try using '1'
-    {
-      //left drive with deadbands
-      setMotorL(abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0);
-
-      //right drive with deadbands
-      setMotorR(abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0);
-
-
-      //operate the lift
-      if(vexRT[ Btn5U ] || vexRT[ Btn6U ]) //test with == 1
-      {
-        setArms((vexRT[ Btn6U ] - vexRT[ Btn5U ]) * -127);
-      }
-      else setArms(0); //is this necessary?
-
-
-      //killswitch
-      if(vexRT[ Btn8D ] == 1)
-      {
-        stopAll();
-      }
-      wait1Msec(20); //don't hog the CPU :)
-    }
+    wait1Msec(20); //don't hog the CPU :)
 
     if(vexRT[ Btn5D ] || vexRT[ Btn6D ])
     {
@@ -198,3 +196,4 @@ PID(int sensor)
     }
     else setGrabber(0); //is this necessary?
   }
+}
