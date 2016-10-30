@@ -243,7 +243,7 @@ task usercontrol()
 
     //operate the lift
     //switch "6D" to "6U"
-    if(vexRT[ Btn5U ] || vexRT[ Btn6D ]) //test with == 1
+    if(vexRT[ Btn5U ] || vexRT[ Btn6U ]) //test with == 1
     {
       setArms((vexRT[ Btn6U ] - vexRT[ Btn5U ]) * -127);
     }
