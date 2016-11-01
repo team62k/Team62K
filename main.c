@@ -67,13 +67,13 @@ To Do List
 void
 setMotorL( int valueL )
 {
-  motor[ LDriveBase ] = valueL;
+  motor[ LDriveBase ] = -valueL; //negative to make robot drive "forward"
 }
 
 void
 setMotorR( int valueR )
 {
-  motor[ RDriveBase ] = valueR;
+  motor[ RDriveBase ] = -valueR; //negative to make robot drive "forward"
 }
 
 void
@@ -218,7 +218,8 @@ void pre_auton()
 #warning "autonomous task"
 task autonomous()
 {
-  AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
+  //AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
+	move(1000, MAX_POWER);
 }
 
 
@@ -230,10 +231,10 @@ task usercontrol()
   while (true) //try using '1'
   {
     //left drive with deadbands
-    setMotorL(abs(vexRT[ Ch3 ]) > 15 ? vexRT[ Ch3 ] : 0);
+    setMotorL(abs(vexRT[ Ch3 ]) > 25 ? vexRT[ Ch3 ] : 0);
 
     //right drive with deadbands
-    setMotorR(abs(vexRT[ Ch2 ]) > 15 ? vexRT[ Ch2 ] : 0);
+    setMotorR(abs(vexRT[ Ch2 ]) > 25 ? vexRT[ Ch2 ] : 0);
 
 
     //operate the lift
