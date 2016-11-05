@@ -38,7 +38,7 @@ static int   pidRunning = 1;
 static float pidRequestedValue;
 
 // final motor drive
-long            motor_driveR;            ///< final motor control value RIGHT
+long            motor_driveR;            /// RIGHT
 long            motor_driveL;            /// LEFT
 
 /*///////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@ To Do List
 1. Try an empty main()
 2. what does it mean to have greater resolution in sensors?
 3. startTask( ); gotta use this within tasks
-4. nMotorEncoder[motorâ??s name]
-5. Check motor and sensors setup
+4. nMotorEncoder[ ]
 */
+
 
 //setters
 void
@@ -76,6 +76,36 @@ setMotorR( int valueR )
   motor[ RDriveBase ] = -valueR; //negative to make robot drive "forward"
 }
 
+
+//action methods
+
+void
+move( int time, int left, int right )
+{
+  setMotorL(left);
+  setMotorR(right);
+  delay(time);
+
+  setMotorR(0);
+  setMotorL(0);
+  //no delay( )?
+
+}
+
+void
+setArms( int time, int power )
+{
+  motor[ leftLift ] = power;
+  motor[ topRightLift ] = power;
+  motor[ bottomRightLift ] = power;
+  delay(time);
+
+  motor[ leftLift ] = 0;
+  motor[ topRightLift ] = 0;
+  motor[ bottomRightLift ] = 0;
+  delay(100);
+}
+
 void
 setArms( int power )
 {
@@ -84,37 +114,14 @@ setArms( int power )
   motor[ bottomRightLift ] = power;
 }
 
-//action methods
-void
-liftTester(int power)
-{
-  setArms(power);
-  delay(150);
-  setArms(power);
-  delay(300);
-  setArms(-power);
-  delay(100);
-}
 
-void
-move( int time, int power )
-{
-  setMotorL(power);
-  setMotorR(power);
-  delay(time);
-  power = 0; //what happens when i ommit this portion?
-  setMotorR(power);
-  setMotorL(power);
-  //no delay( )?
-
-}
 
 //stops everything
 void
 stopAll()
 {
-  move(1000, 0);
-  setArms(0);
+  move(1000, 0, 0);
+  setArms(100, 0);
   //add any other motors that need killing ð??¡
 }
 
@@ -204,12 +211,11 @@ task test()
 {
   displayNextLCDString("Main task running");
   //move(1000, 100);
-  liftTester(127);
   //userControl();
   //test return false;
 }
 
-#warning "autonomous task"
+#warning "pre-autonomous task"
 void pre_auton()
 {
   //Pre-autonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
@@ -218,8 +224,8 @@ void pre_auton()
 #warning "autonomous task"
 task autonomous()
 {
-  //AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
-	move(1000, MAX_POWER);
+	setArms(800, MIN_POWER);
+	move(2000, MAX_POWER, MAX_POWER); // forward
 }
 
 
@@ -250,6 +256,8 @@ task usercontrol()
     {
       stopAll();
     }
+
+    setArms(10); // keeps the lift up when holding stars
 
     wait1Msec(20); //don't hog the CPU :)
   }
