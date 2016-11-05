@@ -56,7 +56,7 @@ long            motor_driveL;            /// LEFT
 
 /*
 To Do List
-1. Try an empty main()
+1. Try an empty ma                                                                                 in()
 2. what does it mean to have greater resolution in sensors?
 3. startTask( ); gotta use this within tasks
 4. nMotorEncoder[ ]
@@ -112,6 +112,7 @@ setArms( int power )
   motor[ leftLift ] = power;
   motor[ topRightLift ] = power;
   motor[ bottomRightLift ] = power;
+  delay(100);
 }
 
 
@@ -257,7 +258,7 @@ task usercontrol()
       stopAll();
     }
 
-    setArms(10); // keeps the lift up when holding stars
+    setArms(-10); // keeps the lift up when holding stars
 
     wait1Msec(20); //don't hog the CPU :)
   }
