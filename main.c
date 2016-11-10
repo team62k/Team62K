@@ -123,7 +123,7 @@ stopAll()
 {
   move(1000, 0, 0);
   setArms(100, 0);
-  //add any other motors that need killing ๐??ก
+  //add any other motors that need killing รฐ??ยก
 }
 
 /*-----------------------------------------------------------------------------*/
@@ -258,7 +258,7 @@ task usercontrol()
       stopAll();
     }
 
-    setArms(-10); // keeps the lift up when holding stars
+    //setArms(-10); // keeps the lift up when holding stars
 
     wait1Msec(20); //don't hog the CPU :)
   }
